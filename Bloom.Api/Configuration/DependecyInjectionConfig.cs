@@ -14,6 +14,8 @@ namespace Bloom.Api.Configuration
             services.AddScoped<ApiDBContext>();
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();
             services.AddScoped<ICategoriaService, CategoriaService>();
+            services.AddScoped<IProdutoRepository, ProdutoRepository>();
+            services.AddScoped<IProdutoService, ProdutoService>();
             services.AddScoped<INotificador, Notificador>();
 
             return services;
