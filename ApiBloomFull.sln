@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Data", "Bloom.Data\Bl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Api", "Bloom.Api\Bloom.Api.csproj", "{00B3FD0B-0428-4570-9049-391BB9B2C714}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Testes", "Bloom.Testes\Bloom.Testes.csproj", "{E8D8D80B-B6A1-4F55-89C8-C9E3B278CFB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{00B3FD0B-0428-4570-9049-391BB9B2C714}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00B3FD0B-0428-4570-9049-391BB9B2C714}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00B3FD0B-0428-4570-9049-391BB9B2C714}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8D8D80B-B6A1-4F55-89C8-C9E3B278CFB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8D8D80B-B6A1-4F55-89C8-C9E3B278CFB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8D8D80B-B6A1-4F55-89C8-C9E3B278CFB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8D8D80B-B6A1-4F55-89C8-C9E3B278CFB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
