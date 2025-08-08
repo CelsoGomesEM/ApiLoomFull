@@ -1,0 +1,53 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Bloom.Negocio.Interfaces;
+using Bloom.Negocio.Models;
+using Bloom.Negocio.Models.Validations;
+
+namespace Bloom.Negocio.Services
+{
+    public class CategoriaService : BaseService, ICategoriaService
+    {
+        private readonly ICategoriaRepository _categoriaRepository;
+
+        public CategoriaService(ICategoriaRepository categoriaRepository,
+            INotificador notificador)
+            : base(notificador)
+        {
+            _categoriaRepository = categoriaRepository;
+        }
+
+        public async Task Adicionar(Categoria categoria)
+        {
+            if (!ExecutarValidacao(new CategoriaValidation(), categoria)) return;
+
+            if (_categoriaRepository.Buscar(f => f.Id == categoria.Id).Result.Any())
+            {
+                Notificar("Já existe uma categoria com este id informado.");
+                return;
+            }
+
+            await _categoriaRepository.Adicionar(categoria);
+        }
+
+        public async Task Atualizar(Categoria categoria)
+        {
+            if (!ExecutarValidacao(new CategoriaValidation(), categoria)) return;
+
+            await _categoriaRepository.Atualizar(categoria);
+        }
+
+        public async Task Remover(Guid id)
+        {
+            await _categoriaRepository.Remover(id);
+        }
+
+        public void Dispose()
+        {
+            _categoriaRepository?.Dispose();
+        }
+    }
+}
