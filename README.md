@@ -31,7 +31,7 @@ Edite Bloom.Api/appsettings.Development.json:
 
 Update-Database ou dotnet ef database update
 
-🚀 Decisões tomadas
+## 🚀 Decisões tomadas
 
 ### DI nativa
 
@@ -60,4 +60,6 @@ INotificador para mensagens de negócio e notificar toda a aplicação com as me
 ### Testes com xUnit
 
 Decidi usar o xUnit pela facilidade, desde o .NET Core, a Microsoft sugere o uso de xUnit nos exemplos oficiais e na própria documentação.
+
+Testes podem ser efetuados via swagger também /swagger/index.html
 
