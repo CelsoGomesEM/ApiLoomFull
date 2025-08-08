@@ -8,10 +8,7 @@ namespace Bloom.Api.Configuration
     {
         public MappingProfile()
         {
-            // Exemplo de mapeamento
             CreateMap<Categoria, CategoriaViewModel>().ReverseMap();
-
-            // Produto
             CreateMap<Produto, ProdutoViewModel>().ReverseMap();
         }
     }

@@ -12,9 +12,7 @@ namespace Bloom.Data.DbContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Esta linha faz com que o EF Core encontre todas as classes de mapping (como CategoriaMapping)
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApiDBContext).Assembly);
-
             base.OnModelCreating(modelBuilder);
         }
     }
