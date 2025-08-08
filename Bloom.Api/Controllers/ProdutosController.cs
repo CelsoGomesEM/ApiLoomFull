@@ -6,6 +6,7 @@ using Bloom.Negocio.Models;
 using Bloom.Negocio.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bloom.Api.Controllers
 {
@@ -28,6 +29,28 @@ namespace Bloom.Api.Controllers
             var produtos = _mapper.Map<IEnumerable<ProdutoViewModel>>(await _produtoRepository.ObterTodos());
             return produtos;
         }
+
+        [HttpGet("paginado")]
+        public async Task<ActionResult<IEnumerable<ProdutoViewModel>>> ObterTodos(Guid? categoriaId, int page, int size)
+        {
+            if (page <= 0 || size <= 0)
+                return BadRequest("Parâmetros page e size devem ser maiores que zero.");
+
+            var query = _produtoRepository.Query();
+
+            if (categoriaId.HasValue)
+                query = query.Where(p => p.CategoriaId == categoriaId.Value);
+
+            var produtos = await query
+                .Skip((page - 1) * size)
+                .Take(size)
+                .ToListAsync();
+
+            var produtosVm = _mapper.Map<IEnumerable<ProdutoViewModel>>(produtos);
+
+            return Ok(produtosVm);
+        }
+
 
         [HttpPost]
         public async Task<ActionResult<ProdutoViewModel>> Adicionar(ProdutoViewModel produtoViewModel)

@@ -22,6 +22,11 @@ namespace Bloom.Data.Repository
             DbSet = db.Set<TEntity>();
         }
 
+        public virtual IQueryable<TEntity> Query()
+        {
+            return DbSet.AsNoTracking();
+        }
+
         public async Task<IEnumerable<TEntity>> Buscar(Expression<Func<TEntity, bool>> predicate)
         {
             return await DbSet.AsNoTracking().Where(predicate).ToListAsync();
