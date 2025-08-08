@@ -20,7 +20,7 @@ Solution Full
 ### Configurar connection string
 Edite Bloom.Api/appsettings.Development.json:
 
-```json
+json
 {
   "ConnectionStrings": {
     "DefaultConnection": "Server=localhost;Database=BloomDb;Trusted_Connection=True;TrustServerCertificate=True"
