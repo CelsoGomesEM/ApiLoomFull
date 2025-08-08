@@ -17,7 +17,7 @@ Solution Full
 - SQL Server (LocalDB)
 
 
-1) Configurar connection string
+### Configurar connection string
 Edite Bloom.Api/appsettings.Development.json:
 
 {
@@ -26,25 +26,25 @@ Edite Bloom.Api/appsettings.Development.json:
   }
 }
 
-2) Aplicar migrations
+### Aplicar migrations
 
 Update-Database ou dotnet ef database update
 
 🚀 Decisões tomadas
 
-DI nativa
+### DI nativa
 
 Utilizado Microsoft.Extensions.DependencyInjection:
 builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
 builder.Services.AddScoped<IProdutoService, ProdutoService>();
 
-EF Core (Validação com Coluna Computada)
+### Persistência EF Core (Validação com Coluna Computada)
 
 Coluna computada Nome_Normalizado = UPPER([Nome]).
 
 Índice único (CategoriaId, Nome_Normalizado) para garantir unicidade case-insensitive.
 
-Validações
+### Validações
 
 FluentValidation na entidade Produto:
 
@@ -52,7 +52,7 @@ Nome obrigatório (2 a 100 caracteres).
 
 PrecoUnitario >= 0.
 
-Tratamento de Mensagens
+### Tratamento de Mensagens
 
 INotificador para mensagens de negócio e notificar toda a aplicação com as mensagens tratadas.
 
