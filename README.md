@@ -15,3 +15,44 @@ Solution Full
 ### Pré-requisitos
 - [.NET SDK 8.0](https://dotnet.microsoft.com/download)
 - SQL Server (LocalDB)
+
+
+1) Configurar connection string
+Edite Bloom.Api/appsettings.Development.json:
+
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=localhost;Database=BloomDb;Trusted_Connection=True;TrustServerCertificate=True"
+  }
+}
+
+2) Aplicar migrations
+
+Update-Database ou dotnet ef database update
+
+🚀 Decisões tomadas
+
+DI nativa
+
+Utilizado Microsoft.Extensions.DependencyInjection:
+builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
+builder.Services.AddScoped<IProdutoService, ProdutoService>();
+
+EF Core (Validação com Coluna Computada)
+
+Coluna computada Nome_Normalizado = UPPER([Nome]).
+
+Índice único (CategoriaId, Nome_Normalizado) para garantir unicidade case-insensitive.
+
+Validações
+
+FluentValidation na entidade Produto:
+
+Nome obrigatório (2 a 100 caracteres).
+
+PrecoUnitario >= 0.
+
+Tratamento de Mensagens
+
+INotificador para mensagens de negócio e notificar toda a aplicação com as mensagens tratadas.
+
