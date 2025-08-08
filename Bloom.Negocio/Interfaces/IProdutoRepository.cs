@@ -9,5 +9,6 @@ namespace Bloom.Negocio.Interfaces
 {
     public interface IProdutoRepository : IRepository<Produto>
     {
+        Task<bool> ExisteEsteNomeProdutoEmCategoria(Guid categoriaId, string nome);
     }
 }

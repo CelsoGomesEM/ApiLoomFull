@@ -1,11 +1,7 @@
-﻿using Bloom.Negocio.Interfaces;
+﻿using Bloom.Negocio.Exceptions;
+using Bloom.Negocio.Interfaces;
 using Bloom.Negocio.Models;
 using Bloom.Negocio.Models.Validations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bloom.Negocio.Services
 {
@@ -22,20 +18,28 @@ namespace Bloom.Negocio.Services
         {
             if (!ExecutarValidacao(new ProdutoValidation(), produto)) return;
 
-            if (_produtoRepository.Buscar(f => f.Id == produto.Id).Result.Any())
+            try
             {
-                Notificar("Já existe um produto com este id informado.");
-                return;
+                await _produtoRepository.Adicionar(produto);
             }
-
-            await _produtoRepository.Adicionar(produto);
+            catch (NomeDuplicadoException)
+            {
+                Notificar("Já existe um produto com esse nome nessa categoria.");
+            }
         }
 
         public async Task Atualizar(Produto produto)
         {
-            if (!ExecutarValidacao(new ProdutoValidation(), produto)) return;
+            try
+            {
+                if (!ExecutarValidacao(new ProdutoValidation(), produto)) return;
 
-            await _produtoRepository.Atualizar(produto);
+                await _produtoRepository.Atualizar(produto);
+            }
+            catch(NomeDuplicadoException)
+            {
+                Notificar("Já existe um produto com esse nome nessa categoria.");
+            }
         }
 
         public Task Remover(Guid id)
