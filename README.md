@@ -56,3 +56,7 @@ PrecoUnitario >= 0.
 
 INotificador para mensagens de negócio e notificar toda a aplicação com as mensagens tratadas.
 
+### Testes com xUnit
+
+Decidi usar o xUnit pela facilidade, desde o .NET Core, a Microsoft sugere o uso de xUnit nos exemplos oficiais e na própria documentação.
+
