@@ -1,3 +1,4 @@
+using Bloom.Api.Configuration;
 using Bloom.Data.DbContext;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +18,8 @@ builder.Services.AddCors(options =>
                 .AllowAnyMethod()
                 .AllowAnyHeader());
 });
+
+builder.Services.ResolveDependecies();
 
 // Add services to the container.
 
